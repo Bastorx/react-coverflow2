@@ -46,6 +46,8 @@ module.exports = React.createClass({
 					margin={(this.state && this.state.margin + "px") || undefined}
 					startPosition={4}
 					enableScroll={true}
+					rotate={30}
+					translateX={200}
 					animationSpeed={0.8}>
 					    <div style={{width: '150px', height: '150px', backgroundColor: 'pink'}} />
 					    <div style={{width: '150px', height: '150px', backgroundColor: 'yellow'}} />
@@ -95,8 +97,10 @@ module.exports = React.createClass({
 * enableScroll [boolean]: Enable scrolling feature. ((default: true)
 * margin [string or number (px)]: margin between elements in coverflow (default: USE CSS)
 !! Don't use margin proprety if you prefer to use media queries, overwrite the CSS and the class .reactjs-coverflow_Element!!
-* animationSpeed[string or number (second)]: Speed of animation coverflow in second (default: USE CSS)
+* animationSpeed [string or number (second)]: Speed of animation coverflow in second (default: USE CSS)
 !! Same that margin !!
+* rotate [number]: Define rotation of non-active element (default: 40°)
+* translateX [number (px)]: Define the initial translateX (default: Compute the center of the coverflow)
 
 #### Refs
 
@@ -145,7 +149,7 @@ You can easely overwrite style propreties.
 ## Minor Update
 
 * Since 1.1.0 : Lodash dependencies has been removed.
-
+* Since 1.2.0 : New props rotate to define the rotation of a non-active element, New props translateX to define the initial translateX
 ## Contributors
 
 * [Bastorx](https://github.com/Bastorx)

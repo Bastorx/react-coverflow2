@@ -1,49 +1,44 @@
 {
-  "name": "reactjs-coverflow",
-  "version": "1.1.1",
-  "description": "A coverflow module for React",
-  "main": "lib/reactjs-coverflow.js",
-  "scripts": {
-    "build": "./node_modules/.bin/gulp build",
-    "build-test": "./node_modules/.bin/gulp build-test",
-    "test": "node test/server.js",
-    "dev": "./node_modules/.bin/gulp development"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Bastorx/reactjs-coverflow.git"
-  },
-  "keywords": [
-    "Carousel",
-    "Coverflow",
-    "React",
-    "Slide"
-  ],
-  "author": "Bastorx",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Bastorx/reactjs-coverflow/issues"
-  },
-  "homepage": "https://github.com/Bastorx/reactjs-coverflow#readme",
-  "devDependencies": {
-    "babel-core": "^6.18.0",
-    "babel-loader": "^6.2.7",
-    "babel-plugin-transform-class-properties": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "express": "^4.13.4",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-webpack": "^1.5.0",
-    "morgan": "^1.7.0",
-    "prop-types": "^15.5.8",
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "webpack": "^1.13.3"
-  },
-  "peersDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0"
-  }
+	"name": "reactjs-coverflow",
+	"version": "1.2.0",
+	"description": "A coverflow module for React",
+	"main": "lib/reactjs-coverflow.js",
+	"scripts": {
+		"build": "./node_modules/.bin/gulp build",
+		"build-test": "./node_modules/.bin/gulp build-test",
+		"test": "node test/server.js",
+		"dev": "./node_modules/.bin/gulp development"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Bastorx/reactjs-coverflow.git"
+	},
+	"keywords": ["Carousel", "Coverflow", "React", "Slide"],
+	"author": "Bastorx",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Bastorx/reactjs-coverflow/issues"
+	},
+	"homepage": "https://github.com/Bastorx/reactjs-coverflow#readme",
+	"devDependencies": {
+		"babel-core": "^6.18.0",
+		"babel-loader": "^6.2.7",
+		"babel-plugin-transform-class-properties": "^6.18.0",
+		"babel-preset-es2015": "^6.18.0",
+		"babel-preset-react": "^6.16.0",
+		"babel-preset-stage-0": "^6.16.0",
+		"express": "^4.13.4",
+		"gulp": "^3.9.1",
+		"gulp-babel": "^6.1.2",
+		"gulp-webpack": "^1.5.0",
+		"morgan": "^1.7.0",
+		"prop-types": "^15.5.8",
+		"react": "^15.0.0",
+		"react-dom": "^15.0.0",
+		"webpack": "^1.13.3"
+	},
+	"peersDependencies": {
+		"react": "^15.0.0",
+		"react-dom": "^15.0.0"
+	}
 }
