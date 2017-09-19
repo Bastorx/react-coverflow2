@@ -100,7 +100,7 @@ module.exports = React.createClass({
 * animationSpeed [string or number (second)]: Speed of animation coverflow in second (default: USE CSS)
 !! Same that margin !!
 * rotate [number]: Define rotation of non-active element (default: 40°)
-* translateX [number (px)]: Define the initial translateX (default: Compute the center of the coverflow)
+* translateX [string or number (px)]: Define the initial translateX (default: Compute the center of the coverflow)
 
 #### Refs
 
@@ -117,9 +117,9 @@ You can use it to create some button
 .reactjs-coverflow_Main {
 	position: relative;
 	margin: 0;
-    	padding: 0;
-    	background-color: rgba(0, 0, 0, 0.1);
-    	overflow: hidden;
+	padding: 0;
+	background-color: rgba(0, 0, 0, 0.1);
+	overflow: hidden;
 }
 
 .reactjs-coverflow_Coverflow {
@@ -130,11 +130,14 @@ You can use it to create some button
 	transform-style: preserve-3d;
 	-webkit-perspective: 500px;
 	perspective: 500px;
+	align-items: center;
+	transition: transform 0.7s;
 }
 
 .reactjs-coverflow_Element {
 	position: relative;
-	-webkit-box-reflect: below 1px -webkit-linear-gradient(bottom,rgba(0,0,0,.6),rgba(0,0,0,.1) 20%,transparent 30%,transparent);
+	-webkit-box-reflect: below 1px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)
+				20%, transparent 30%, transparent);
 	margin: auto 20px;
 	transition: transform 0.7s;
 }
@@ -145,7 +148,7 @@ You can easely overwrite style propreties.
 ## Major Update
 
 * Since 1.0.0 : react-coverflow-X is replace to reactjs-coverflow in the style.
-
+* Since 2.0.0-beta : translateX proprety can be a string (px, %... are supported), elements of the coverflow doesn't move, it's the entire coverflow whom moves. Increase of perf.
 ## Minor Update
 
 * Since 1.1.0 : Lodash dependencies has been removed.
@@ -175,7 +178,7 @@ $ npm run build
 # Build source of site
 $ npm run build-test
 
-# Run test-server (default port: 3001)
+# Run test-server (default port: 4000)
 $ npm run dev
 
 # You can run all this command with the following command:

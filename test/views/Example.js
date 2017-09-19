@@ -32,7 +32,7 @@ export default class Example extends Component {
 						enableScroll={true}
 						animationSpeed={0.6}
 						rotate={page == 3 ? 0 : 40}
-						translateX={page == 3 ? 40 : undefined}
+						translateX={"20%"}
 					>
 						{this.getPage(this.state.page)}
 					</Coverflow>

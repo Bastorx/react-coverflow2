@@ -15,7 +15,7 @@ module.exports = class Coverflow extends Component {
 		rotate: PropTypes.number,
 		margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		animationSpeed: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-		translateX: PropTypes.number
+		translateX: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 	};
 	constructor(props) {
 		super(props);
@@ -44,17 +44,6 @@ module.exports = class Coverflow extends Component {
 			offset.push(e.offsetLeft);
 		});
 
-		const activeElementWith =
-			(elements[this.state.position] &&
-				elements[this.state.position].offsetWidth / 2) ||
-			0;
-		const translateX = this.props.translateX
-			? `translateX(${this.props.translateX - offset[this.state.position]}px)`
-			: `translateX(
-			${coverflow.offsetWidth / 2 -
-				activeElementWith -
-				offset[this.state.position]}px)`;
-
 		this._forEach(elements, (e, key) => {
 			const rotateY =
 				this.state.position > key
@@ -62,7 +51,7 @@ module.exports = class Coverflow extends Component {
 					: this.state.position < key
 						? ` rotateY(-${this.props.rotate}deg)`
 						: "";
-			e.style.transform = translateX + rotateY;
+			e.style.transform = rotateY;
 			if (this.props.animationSpeed) {
 				e.style.transition =
 					"transform " +
@@ -96,6 +85,28 @@ module.exports = class Coverflow extends Component {
 		}
 	}
 	render() {
+		let translateX = 0;
+		if (this.state.offset && this.state.offset[this.state.position]) {
+			const activeElementWith =
+				(this.state.elements[this.state.position] &&
+					this.state.elements[this.state.position].offsetWidth / 2) ||
+				0;
+			translateX =
+				!!this.props.translateX || this.props.translateX === 0
+					? `translateX(${typeof this.props.translateX == "string"
+							? this.props.translateX
+							: `${this.props.translateX}px`}) translateX(${-this.state.offset[
+							this.state.position
+						]}px)`
+					: `translateX(${this.state.coverflow.offsetWidth / 2 -
+							activeElementWith -
+							this.state.offset[this.state.position]}px)`;
+		}
+		const transition = this.props.animationSpeed
+			? typeof this.props.animationSpeed == "string"
+				? this.props.animationSpeed
+				: this.props.animationSpeed + "s"
+			: undefined;
 		return (
 			<div
 				ref="coverflow"
@@ -109,7 +120,10 @@ module.exports = class Coverflow extends Component {
 				onTouchStart={this._handleTouchStart.bind(this)}
 				onTouchMove={this._handleTouchMove.bind(this)}
 			>
-				<div className="reactjs-coverflow_Coverflow">
+				<div
+					className="reactjs-coverflow_Coverflow"
+					style={{ transform: translateX, transition }}
+				>
 					{this.props.children &&
 						this.props.children.map((element, i) => {
 							return (
@@ -216,21 +230,12 @@ module.exports = class Coverflow extends Component {
 		const offset = o ? o : this.state.offset;
 		const elementsNumber = this.state.elements.length;
 
-		const activeElementWith =
-			(this.state.elements[position] &&
-				this.state.elements[position].offsetWidth / 2) ||
-			0;
-		const translateX = this.props.translateX
-			? `translateX(${this.props.translateX - offset[position]}px)`
-			: `translateX(${this.state.coverflow.offsetWidth / 2 -
-					activeElementWith -
-					offset[position]}px)`;
 		this._forEach(this.state.elements, (e, key) => {
 			const rotateY =
 				position > key
 					? ` rotateY(${this.props.rotate}deg)`
 					: position < key ? ` rotateY(-${this.props.rotate}deg)` : "";
-			e.style.transform = translateX + rotateY;
+			e.style.transform = rotateY;
 			e.style.zIndex = elementsNumber - Math.abs(position - key);
 		});
 	}
@@ -239,7 +244,7 @@ module.exports = class Coverflow extends Component {
 			this.constructor.cssLoaded = true;
 
 			const css =
-				".reactjs-coverflow_Main{position:relative;margin:0;padding:0;background-color:rgba(0,0,0,.1);overflow:hidden}.reactjs-coverflow_Coverflow{width:100%;height:100%;display:flex;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-perspective:500px;perspective:500px;align-items:center}.reactjs-coverflow_Element{position:relative;-webkit-box-reflect:below 1px -webkit-linear-gradient(bottom,rgba(0,0,0,.6),rgba(0,0,0,.1) 20%,transparent 30%,transparent);margin:auto 20px;transition:transform .7s}";
+				".reactjs-coverflow_Main { position: relative; margin: 0; padding: 0; background-color: rgba(0, 0, 0, 0.1); overflow: hidden; } .reactjs-coverflow_Coverflow { width: 100%; height: 100%; display: flex; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-perspective: 500px; perspective: 500px; align-items: center; transition: transform 0.7s; } .reactjs-coverflow_Element { position: relative; -webkit-box-reflect: below 1px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1) 20%, transparent 30%, transparent); margin: auto 20px; transition: transform 0.7s; }";
 			const head = document.head || document.getElementsByTagName("head")[0];
 			let style = document.createElement("style");
 
