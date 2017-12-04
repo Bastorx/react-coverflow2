@@ -20,6 +20,17 @@ module.exports = class Coverflow extends Component {
 	constructor(props) {
 		super(props);
 		const childrens = props.children && props.children.length;
+		this._handleWheel = this._handleWheel.bind(this);
+		this._handleTouchStart = this._handleTouchStart.bind(this);
+		this._handleTouchMove = this._handleTouchMove.bind(this);
+		this._handleResize = this._handleResize.bind(this);
+		this.previous = this.previous.bind(this);
+		this.next = this.next.bind(this);
+		this.goAt = this.goAt.bind(this);
+		this.getPosition = this.getPosition.bind(this);
+		this._animation = this._animation.bind(this);
+		this._loadCSS = this._loadCSS.bind(this);
+
 		this.state = {
 			position:
 				props.startPosition > (childrens || 0)
@@ -66,12 +77,12 @@ module.exports = class Coverflow extends Component {
 			elements: elements,
 			coverflow: coverflow
 		});
-		window.addEventListener("resize", this._handleResize.bind(this));
+		window.addEventListener("resize", this._handleResize);
 	}
 	componentDidUpdate() {
 		if (!this.state.shouldUpdate) return;
 		this.setState({ shouldUpdate: false });
-		this._handleResize.apply(this);
+		this._handleResize();
 	}
 	componentWillReceiveProps(newProps) {
 		if (newProps.margin != this.props.margin)
@@ -93,11 +104,11 @@ module.exports = class Coverflow extends Component {
 				0;
 			translateX =
 				!!this.props.translateX || this.props.translateX === 0
-					? `translateX(${typeof this.props.translateX == "string"
-							? this.props.translateX
-							: `${this.props.translateX}px`}) translateX(${-this.state.offset[
-							this.state.position
-						]}px)`
+					? `translateX(${
+							typeof this.props.translateX == "string"
+								? this.props.translateX
+								: `${this.props.translateX}px`
+						}) translateX(${-this.state.offset[this.state.position]}px)`
 					: `translateX(${this.state.coverflow.offsetWidth / 2 -
 							activeElementWith -
 							this.state.offset[this.state.position]}px)`;
@@ -116,9 +127,9 @@ module.exports = class Coverflow extends Component {
 					(this.props.className ? " " + this.props.className : "")
 				}
 				style={this.props.style}
-				onWheel={this.props.enableScroll ? this._handleWheel.bind(this) : ""}
-				onTouchStart={this._handleTouchStart.bind(this)}
-				onTouchMove={this._handleTouchMove.bind(this)}
+				onWheel={this.props.enableScroll ? this._handleWheel : ""}
+				onTouchStart={this._handleTouchStart}
+				onTouchMove={this._handleTouchMove}
 			>
 				<div
 					className="reactjs-coverflow_Coverflow"
@@ -134,17 +145,15 @@ module.exports = class Coverflow extends Component {
 										(i == this.state.position ? " active" : "")
 									}
 									style={
-										this.props.margin ? (
-											{
-												margin:
-													"auto " +
-													(typeof this.props.margin == "string"
-														? this.props.margin
-														: this.props.margin + "px")
-											}
-										) : (
-											{}
-										)
+										this.props.margin
+											? {
+													margin:
+														"auto " +
+														(typeof this.props.margin == "string"
+															? this.props.margin
+															: this.props.margin + "px")
+												}
+											: {}
 									}
 								>
 									{element}

@@ -38,16 +38,16 @@ export default class Example extends Component {
 					</Coverflow>
 
 					<input type="text" name="margin" onChange={this.handleMarginChange} />
-					<button onClick={this.prev.bind(this)} type="button">
+					<button onClick={e => this.prev(e)} type="button">
 						Prev
 					</button>
-					<button onClick={this.next.bind(this)} type="button">
+					<button onClick={e => this.next(e)} type="button">
 						Next
 					</button>
-					<button onClick={this.getPosition.bind(this)} type="button">
+					<button onClick={e => this.getPosition(e)} type="button">
 						GetPosition
 					</button>
-					<button onClick={this.goAt.bind(this, 4)} type="button">
+					<button onClick={e => this.goAt(4, e)} type="button">
 						Go At 5
 					</button>
 				</form>
@@ -65,6 +65,7 @@ export default class Example extends Component {
 	next(e) {
 		e.preventDefault();
 		this.refs.coverflow.next();
+		this.setState({});
 	}
 	getPosition(e) {
 		e.preventDefault();

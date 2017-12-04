@@ -22312,22 +22312,30 @@
 						_react2.default.createElement("input", { type: "text", name: "margin", onChange: this.handleMarginChange }),
 						_react2.default.createElement(
 							"button",
-							{ onClick: this.prev.bind(this), type: "button" },
+							{ onClick: function onClick(e) {
+									return _this2.prev(e);
+								}, type: "button" },
 							"Prev"
 						),
 						_react2.default.createElement(
 							"button",
-							{ onClick: this.next.bind(this), type: "button" },
+							{ onClick: function onClick(e) {
+									return _this2.next(e);
+								}, type: "button" },
 							"Next"
 						),
 						_react2.default.createElement(
 							"button",
-							{ onClick: this.getPosition.bind(this), type: "button" },
+							{ onClick: function onClick(e) {
+									return _this2.getPosition(e);
+								}, type: "button" },
 							"GetPosition"
 						),
 						_react2.default.createElement(
 							"button",
-							{ onClick: this.goAt.bind(this, 4), type: "button" },
+							{ onClick: function onClick(e) {
+									return _this2.goAt(4, e);
+								}, type: "button" },
 							"Go At 5"
 						)
 					)
@@ -22350,6 +22358,7 @@
 			value: function next(e) {
 				e.preventDefault();
 				this.refs.coverflow.next();
+				this.setState({});
 			}
 		}, {
 			key: "getPosition",
@@ -22591,6 +22600,17 @@
 			var _this = _possibleConstructorReturn(this, (Coverflow.__proto__ || Object.getPrototypeOf(Coverflow)).call(this, props));
 
 			var childrens = props.children && props.children.length;
+			_this._handleWheel = _this._handleWheel.bind(_this);
+			_this._handleTouchStart = _this._handleTouchStart.bind(_this);
+			_this._handleTouchMove = _this._handleTouchMove.bind(_this);
+			_this._handleResize = _this._handleResize.bind(_this);
+			_this.previous = _this.previous.bind(_this);
+			_this.next = _this.next.bind(_this);
+			_this.goAt = _this.goAt.bind(_this);
+			_this.getPosition = _this.getPosition.bind(_this);
+			_this._animation = _this._animation.bind(_this);
+			_this._loadCSS = _this._loadCSS.bind(_this);
+
 			_this.state = {
 				position: props.startPosition > (childrens || 0) ? (childrens || 0) - 1 : props.startPosition,
 				shouldUpdate: false
@@ -22631,14 +22651,14 @@
 					elements: elements,
 					coverflow: coverflow
 				});
-				window.addEventListener("resize", this._handleResize.bind(this));
+				window.addEventListener("resize", this._handleResize);
 			}
 		}, {
 			key: "componentDidUpdate",
 			value: function componentDidUpdate() {
 				if (!this.state.shouldUpdate) return;
 				this.setState({ shouldUpdate: false });
-				this._handleResize.apply(this);
+				this._handleResize();
 			}
 		}, {
 			key: "componentWillReceiveProps",
@@ -22667,9 +22687,9 @@
 					id: this.props.id,
 					className: "reactjs-coverflow_Main" + (this.props.className ? " " + this.props.className : ""),
 					style: this.props.style,
-					onWheel: this.props.enableScroll ? this._handleWheel.bind(this) : "",
-					onTouchStart: this._handleTouchStart.bind(this),
-					onTouchMove: this._handleTouchMove.bind(this)
+					onWheel: this.props.enableScroll ? this._handleWheel : "",
+					onTouchStart: this._handleTouchStart,
+					onTouchMove: this._handleTouchMove
 				}, _react2.default.createElement("div", {
 					className: "reactjs-coverflow_Coverflow",
 					style: { transform: translateX, transition: transition }
