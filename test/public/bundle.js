@@ -22252,12 +22252,22 @@
 			var _this = _possibleConstructorReturn(this, (Example.__proto__ || Object.getPrototypeOf(Example)).call(this, props));
 
 			_this.state = {
-				page: 1
+				page: 1,
+				position: 0
 			};
 			return _this;
 		}
 
 		_createClass(Example, [{
+			key: "componentDidMount",
+			value: function componentDidMount() {
+				var coverflow = this.refs.coverflow;
+
+				this.setState({
+					position: coverflow && coverflow.getPosition() || 0
+				});
+			}
+		}, {
 			key: "handleMarginChange",
 			value: function handleMarginChange(e) {
 				e.preventDefault();
@@ -22278,8 +22288,11 @@
 			}
 		}, {
 			key: "onChange",
-			value: function onChange(index) {
-				console.log("New position: " + index);
+			value: function onChange(position) {
+				console.log("New position: " + position);
+
+				// To test the issue of infinite callback, see https://github.com/Bastorx/reactjs-coverflow/issues/18
+				this.setState({ position: position });
 			}
 		}, {
 			key: "getPosition",
@@ -22316,11 +22329,18 @@
 			value: function render() {
 				var _this2 = this;
 
-				var page = this.state.page;
+				var _state = this.state,
+				    page = _state.page,
+				    position = _state.position;
 
 				return _react2.default.createElement(
 					"div",
 					null,
+					_react2.default.createElement(
+						"p",
+						null,
+						position
+					),
 					_react2.default.createElement(
 						"form",
 						null,
@@ -22357,12 +22377,13 @@
 							{
 								ref: "coverflow",
 								style: { width: "100vw", height: "500px" },
-								startPosition: 1,
+								startPosition: 0,
 								enableScroll: true,
 								animationSpeed: 0.6,
 								rotate: page == 3 ? 0 : 40,
-								translateX: "20%",
-								onChange: this.onChange
+								onChange: function onChange(position) {
+									return _this2.onChange(position);
+								}
 							},
 							this.getPage(this.state.page)
 						),
@@ -22575,6 +22596,9 @@
 				if (this.state.position > 0) {
 					var position = this.state.position - 1;
 					this.setState({ position: position });
+					if (this.props.onChange) {
+						this.props.onChange(position);
+					}
 					this._animation(position);
 				}
 			}
@@ -22584,6 +22608,9 @@
 				if (this.state.position < this.state.offset.length - 1) {
 					var position = this.state.position + 1;
 					this.setState({ position: position });
+					if (this.props.onChange) {
+						this.props.onChange(position);
+					}
 					this._animation(position);
 				}
 			}
@@ -22593,6 +22620,9 @@
 				if (position < 0) position = 0;else if (position >= this.state.offset.length) position = this.state.offset.length - 1;
 
 				this.setState({ position: position });
+				if (this.props.onChange) {
+					this.props.onChange(position);
+				}
 				this._animation(position);
 			}
 		}, {
@@ -22667,10 +22697,6 @@
 					e.style.transform = rotateY;
 					e.style.zIndex = elementsNumber - Math.abs(position - key);
 				});
-				// Bêta, this call could be update or deprecated later
-				if (this.props.onChange) {
-					this.props.onChange(position);
-				}
 			}
 		}, {
 			key: "_loadCSS",

@@ -169,6 +169,9 @@ module.exports = class Coverflow extends Component {
 		if (this.state.position > 0) {
 			const position = this.state.position - 1;
 			this.setState({ position });
+			if (this.props.onChange) {
+				this.props.onChange(position);
+			}
 			this._animation(position);
 		}
 	}
@@ -176,6 +179,9 @@ module.exports = class Coverflow extends Component {
 		if (this.state.position < this.state.offset.length - 1) {
 			const position = this.state.position + 1;
 			this.setState({ position });
+			if (this.props.onChange) {
+				this.props.onChange(position);
+			}
 			this._animation(position);
 		}
 	}
@@ -185,6 +191,9 @@ module.exports = class Coverflow extends Component {
 			position = this.state.offset.length - 1;
 
 		this.setState({ position });
+		if (this.props.onChange) {
+			this.props.onChange(position);
+		}
 		this._animation(position);
 	}
 	getPosition() {
@@ -248,10 +257,6 @@ module.exports = class Coverflow extends Component {
 			e.style.transform = rotateY;
 			e.style.zIndex = elementsNumber - Math.abs(position - key);
 		});
-		// Bêta, this call could be update or deprecated later
-		if (this.props.onChange) {
-			this.props.onChange(position);
-		}
 	}
 	_loadCSS() {
 		if (!this.constructor.cssLoaded && typeof document != "undefined") {

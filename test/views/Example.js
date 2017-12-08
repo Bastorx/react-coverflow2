@@ -6,8 +6,15 @@ export default class Example extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			page: 1
+			page: 1,
+			position: 0
 		};
+	}
+	componentDidMount() {
+		const { coverflow } = this.refs;
+		this.setState({
+			position: (coverflow && coverflow.getPosition()) || 0
+		});
 	}
 	handleMarginChange(e) {
 		e.preventDefault();
@@ -22,8 +29,11 @@ export default class Example extends Component {
 		this.refs.coverflow.next();
 		this.setState({});
 	}
-	onChange(index) {
-		console.log(`New position: ${index}`);
+	onChange(position) {
+		console.log(`New position: ${position}`);
+
+		// To test the issue of infinite callback, see https://github.com/Bastorx/reactjs-coverflow/issues/18
+		this.setState({ position });
 	}
 	getPosition(e) {
 		e.preventDefault();
@@ -50,9 +60,10 @@ export default class Example extends Component {
 		}
 	}
 	render() {
-		const { page } = this.state;
+		const { page, position } = this.state;
 		return (
 			<div>
+				<p>{position}</p>
 				<form>
 					<button onClick={() => this.setState({ page: 1 })} type="button">
 						Page 1
@@ -69,12 +80,11 @@ export default class Example extends Component {
 					<Coverflow
 						ref="coverflow"
 						style={{ width: "100vw", height: "500px" }}
-						startPosition={1}
+						startPosition={0}
 						enableScroll={true}
 						animationSpeed={0.6}
 						rotate={page == 3 ? 0 : 40}
-						translateX={"20%"}
-						onChange={this.onChange}
+						onChange={position => this.onChange(position)}
 					>
 						{this.getPage(this.state.page)}
 					</Coverflow>
