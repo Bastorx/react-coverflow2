@@ -108,7 +108,9 @@ module.exports = React.createClass({
 * translateX [string or number (px)]: Define the initial translateX (default:
 	Compute the center of the coverflow)
 * onChange [function]: Will be call when the position change. This function
-	receive the new position (first is 0) as parameter #### Refs
+	receive the new position (first is 0) as parameter (in beta)
+
+#### Refs
 
 You can get some function of your coverflow with a ref proprety
 
