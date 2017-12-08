@@ -22233,6 +22233,8 @@
 
 	var _reactjsCoverflow2 = _interopRequireDefault(_reactjsCoverflow);
 
+	var _page = __webpack_require__(188);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22256,6 +22258,60 @@
 		}
 
 		_createClass(Example, [{
+			key: "handleMarginChange",
+			value: function handleMarginChange(e) {
+				e.preventDefault();
+				this.setState({ margin: parseFloat(e.currentTarget.value) });
+			}
+		}, {
+			key: "prev",
+			value: function prev(e) {
+				e.preventDefault();
+				this.refs.coverflow.previous();
+			}
+		}, {
+			key: "next",
+			value: function next(e) {
+				e.preventDefault();
+				this.refs.coverflow.next();
+				this.setState({});
+			}
+		}, {
+			key: "onChange",
+			value: function onChange(index) {
+				console.log("New position: " + index);
+			}
+		}, {
+			key: "getPosition",
+			value: function getPosition(e) {
+				e.preventDefault();
+				console.log(this.refs.coverflow.getPosition());
+			}
+		}, {
+			key: "goAt",
+			value: function goAt(num, e) {
+				e.preventDefault();
+				this.refs.coverflow.goAt(4);
+			}
+		}, {
+			key: "getPage",
+			value: function getPage(num) {
+				switch (num) {
+					case 1:
+						return _page.Page1;
+						break;
+					case 2:
+						return _page.Page2;
+						break;
+					case 3:
+						return _page.Page3;
+						break;
+					case 4:
+						return _page.Page4;
+						break;
+				}
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				var _this2 = this;
@@ -22305,7 +22361,8 @@
 								enableScroll: true,
 								animationSpeed: 0.6,
 								rotate: page == 3 ? 0 : 40,
-								translateX: "20%"
+								translateX: "20%",
+								onChange: this.onChange
 							},
 							this.getPage(this.state.page)
 						),
@@ -22340,197 +22397,6 @@
 						)
 					)
 				);
-			}
-		}, {
-			key: "handleMarginChange",
-			value: function handleMarginChange(e) {
-				e.preventDefault();
-				this.setState({ margin: parseFloat(e.currentTarget.value) });
-			}
-		}, {
-			key: "prev",
-			value: function prev(e) {
-				e.preventDefault();
-				this.refs.coverflow.previous();
-			}
-		}, {
-			key: "next",
-			value: function next(e) {
-				e.preventDefault();
-				this.refs.coverflow.next();
-				this.setState({});
-			}
-		}, {
-			key: "getPosition",
-			value: function getPosition(e) {
-				e.preventDefault();
-				console.log(this.refs.coverflow.getPosition());
-			}
-		}, {
-			key: "goAt",
-			value: function goAt(num, e) {
-				e.preventDefault();
-				this.refs.coverflow.goAt(4);
-			}
-		}, {
-			key: "getPage",
-			value: function getPage(num) {
-				switch (num) {
-					case 1:
-						return [_react2.default.createElement("div", {
-							key: "0",
-							style: { width: "150px", height: "150px", backgroundColor: "pink" }
-						}), _react2.default.createElement("div", {
-							key: "1",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "yellow"
-							}
-						}), _react2.default.createElement("div", {
-							key: "2",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "green"
-							}
-						}), _react2.default.createElement("div", {
-							key: "3",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "orange"
-							}
-						}), _react2.default.createElement("div", {
-							key: "4",
-							style: { width: "150px", height: "150px", backgroundColor: "blue" }
-						}), _react2.default.createElement("div", {
-							key: "5",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "purple"
-							}
-						}), _react2.default.createElement("div", {
-							key: "6",
-							style: {
-								width: "100px",
-								height: "150px",
-								backgroundColor: "#000000"
-							}
-						}), _react2.default.createElement("div", {
-							key: "7",
-							style: { width: "200px", height: "150px", backgroundColor: "pink" }
-						})];
-						break;
-					case 2:
-						return null;
-						break;
-					case 3:
-						return [_react2.default.createElement("div", {
-							key: "0",
-							style: { width: "150px", height: "150px", backgroundColor: "pink" }
-						}), _react2.default.createElement("div", {
-							key: "1",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "yellow"
-							}
-						}), _react2.default.createElement("div", {
-							key: "2",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "green"
-							}
-						}), _react2.default.createElement("div", {
-							key: "3",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "orange"
-							}
-						}), _react2.default.createElement("div", {
-							key: "4",
-							style: { width: "150px", height: "150px", backgroundColor: "blue" }
-						}), _react2.default.createElement("div", {
-							key: "5",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "purple"
-							}
-						}), _react2.default.createElement("div", {
-							key: "6",
-							style: {
-								width: "100px",
-								height: "150px",
-								backgroundColor: "#000000"
-							}
-						}), _react2.default.createElement("div", {
-							key: "7",
-							style: { width: "200px", height: "150px", backgroundColor: "pink" }
-						}), _react2.default.createElement("div", {
-							key: "8",
-							style: { width: "150px", height: "150px", backgroundColor: "pink" }
-						}), _react2.default.createElement("div", {
-							key: "9",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "yellow"
-							}
-						}), _react2.default.createElement("div", {
-							key: "10",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "green"
-							}
-						}), _react2.default.createElement("div", {
-							key: "11",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "orange"
-							}
-						}), _react2.default.createElement("div", {
-							key: "12",
-							style: { width: "150px", height: "150px", backgroundColor: "blue" }
-						}), _react2.default.createElement("div", {
-							key: "13",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "purple"
-							}
-						}), _react2.default.createElement("div", {
-							key: "14",
-							style: {
-								width: "100px",
-								height: "150px",
-								backgroundColor: "#000000"
-							}
-						}), _react2.default.createElement("div", {
-							key: "15",
-							style: { width: "200px", height: "150px", backgroundColor: "pink" }
-						})];
-						break;
-					case 4:
-						return [_react2.default.createElement("div", {
-							key: "0",
-							style: { width: "150px", height: "150px", backgroundColor: "pink" }
-						}), _react2.default.createElement("div", {
-							key: "1",
-							style: {
-								width: "150px",
-								height: "150px",
-								backgroundColor: "yellow"
-							}
-						})];
-						break;
-				}
 			}
 		}]);
 
@@ -22723,11 +22589,11 @@
 			}
 		}, {
 			key: "goAt",
-			value: function goAt(pos) {
-				if (pos < 0) pos = 0;else if (pos >= this.state.offset.length) pos = this.state.offset.length - 1;
+			value: function goAt(position) {
+				if (position < 0) position = 0;else if (position >= this.state.offset.length) position = this.state.offset.length - 1;
 
-				this.setState({ position: pos });
-				this._animation(pos);
+				this.setState({ position: position });
+				this._animation(position);
 			}
 		}, {
 			key: "getPosition",
@@ -22801,6 +22667,10 @@
 					e.style.transform = rotateY;
 					e.style.zIndex = elementsNumber - Math.abs(position - key);
 				});
+				// Bêta, this call could be update or deprecated later
+				if (this.props.onChange) {
+					this.props.onChange(position);
+				}
 			}
 		}, {
 			key: "_loadCSS",
@@ -22847,7 +22717,8 @@
 		rotate: _propTypes2.default.number,
 		margin: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
 		animationSpeed: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
-		translateX: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
+		translateX: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+		onChange: _propTypes2.default.func
 	}, _temp);
 
 /***/ }),
@@ -22951,6 +22822,268 @@
 	  return ReactPropTypes;
 	};
 
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _page = __webpack_require__(189);
+
+	Object.defineProperty(exports, "Page1", {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_page).default;
+	  }
+	});
+
+	var _page2 = __webpack_require__(190);
+
+	Object.defineProperty(exports, "Page2", {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_page2).default;
+	  }
+	});
+
+	var _page3 = __webpack_require__(191);
+
+	Object.defineProperty(exports, "Page3", {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_page3).default;
+	  }
+	});
+
+	var _page4 = __webpack_require__(192);
+
+	Object.defineProperty(exports, "Page4", {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_page4).default;
+	  }
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = [_react2.default.createElement("div", {
+		key: "0",
+		style: { width: "150px", height: "150px", backgroundColor: "pink" }
+	}), _react2.default.createElement("div", {
+		key: "1",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "yellow"
+		}
+	}), _react2.default.createElement("div", {
+		key: "2",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "green"
+		}
+	}), _react2.default.createElement("div", {
+		key: "3",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "orange"
+		}
+	}), _react2.default.createElement("div", {
+		key: "4",
+		style: { width: "150px", height: "150px", backgroundColor: "blue" }
+	}), _react2.default.createElement("div", {
+		key: "5",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "purple"
+		}
+	}), _react2.default.createElement("div", {
+		key: "6",
+		style: {
+			width: "100px",
+			height: "150px",
+			backgroundColor: "#000000"
+		}
+	}), _react2.default.createElement("div", {
+		key: "7",
+		style: { width: "200px", height: "150px", backgroundColor: "pink" }
+	})];
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = null;
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = [_react2.default.createElement("div", {
+		key: "0",
+		style: { width: "150px", height: "150px", backgroundColor: "pink" }
+	}), _react2.default.createElement("div", {
+		key: "1",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "yellow"
+		}
+	}), _react2.default.createElement("div", {
+		key: "2",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "green"
+		}
+	}), _react2.default.createElement("div", {
+		key: "3",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "orange"
+		}
+	}), _react2.default.createElement("div", {
+		key: "4",
+		style: { width: "150px", height: "150px", backgroundColor: "blue" }
+	}), _react2.default.createElement("div", {
+		key: "5",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "purple"
+		}
+	}), _react2.default.createElement("div", {
+		key: "6",
+		style: {
+			width: "100px",
+			height: "150px",
+			backgroundColor: "#000000"
+		}
+	}), _react2.default.createElement("div", {
+		key: "7",
+		style: { width: "200px", height: "150px", backgroundColor: "pink" }
+	}), _react2.default.createElement("div", {
+		key: "8",
+		style: { width: "150px", height: "150px", backgroundColor: "pink" }
+	}), _react2.default.createElement("div", {
+		key: "9",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "yellow"
+		}
+	}), _react2.default.createElement("div", {
+		key: "10",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "green"
+		}
+	}), _react2.default.createElement("div", {
+		key: "11",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "orange"
+		}
+	}), _react2.default.createElement("div", {
+		key: "12",
+		style: { width: "150px", height: "150px", backgroundColor: "blue" }
+	}), _react2.default.createElement("div", {
+		key: "13",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "purple"
+		}
+	}), _react2.default.createElement("div", {
+		key: "14",
+		style: {
+			width: "100px",
+			height: "150px",
+			backgroundColor: "#000000"
+		}
+	}), _react2.default.createElement("div", {
+		key: "15",
+		style: { width: "200px", height: "150px", backgroundColor: "pink" }
+	})];
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = [_react2.default.createElement("div", {
+		key: "0",
+		style: { width: "150px", height: "150px", backgroundColor: "pink" }
+	}), _react2.default.createElement("div", {
+		key: "1",
+		style: {
+			width: "150px",
+			height: "150px",
+			backgroundColor: "yellow"
+		}
+	})];
 
 /***/ })
 /******/ ]);

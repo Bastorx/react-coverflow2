@@ -1,13 +1,15 @@
-React Coverflow
-===
+# React Coverflow
+
 [![npm version](https://badge.fury.io/js/reactjs-coverflow.svg)](http://badge.fury.io/js/reactjs-coverflow)
 
 [![NPM](https://nodei.co/npm/reactjs-coverflow.png)](https://nodei.co/npm/reactjs-coverflow/)
 
 ---
+
 (Inspired from https://github.com/andyyou/react-coverflow)
 
-React Coverflow is a React component for building cover flow style carousel in a convenient way.
+React Coverflow is a React component for building cover flow style carousel in a
+convenient way.
 
 Features of `reactjs-coverflow`
 
@@ -26,7 +28,8 @@ Install `reactjs-coverflow` using npm.
 $ npm install reactjs-coverflow
 ```
 
-The required stylesheet using `css-module` and include in package(js file), so you don't need include other stylesheet.
+The required stylesheet using `css-module` and include in package(js file), so
+you don't need include other stylesheet.
 
 ## Usage
 
@@ -93,26 +96,31 @@ module.exports = React.createClass({
 
 #### Options
 
-* startPosition [number]: Start at 0, determine the starting element of your coverflow (default: 0)
+* startPosition [number]: Start at 0, determine the starting element of your
+	coverflow (default: 0)
 * enableScroll [boolean]: Enable scrolling feature. ((default: true)
-* margin [string or number (px)]: margin between elements in coverflow (default: USE CSS)
-!! Don't use margin proprety if you prefer to use media queries, overwrite the CSS and the class .reactjs-coverflow_Element!!
-* animationSpeed [string or number (second)]: Speed of animation coverflow in second (default: USE CSS)
-!! Same that margin !!
+* margin [string or number (px)]: margin between elements in coverflow (default:
+	USE CSS) !! Don't use margin proprety if you prefer to use media queries,
+	overwrite the CSS and the class .reactjs-coverflow_Element!!
+* animationSpeed [string or number (second)]: Speed of animation coverflow in
+	second (default: USE CSS) !! Same that margin !!
 * rotate [number]: Define rotation of non-active element (default: 40°)
-* translateX [string or number (px)]: Define the initial translateX (default: Compute the center of the coverflow)
-
-#### Refs
+* translateX [string or number (px)]: Define the initial translateX (default:
+	Compute the center of the coverflow)
+* onChange [function]: Will be call when the position change. This function
+	receive the new position (first is 0) as parameter #### Refs
 
 You can get some function of your coverflow with a ref proprety
+
 * next(): go to next slide
 * previous(): go to previous slide
-* goAt(number): go to {number slide} (Begin at 0 !)
-* getPosition(): get position of current slide (Begin at 0)
+* goAt(number): go to {number slide} (First is 0)
+* getPosition(): get position of current slide (First is 0)
 
 You can use it to create some button
 
 #### CSS
+
 ```
 .reactjs-coverflow_Main {
 	position: relative;
@@ -148,20 +156,35 @@ You can easely overwrite style propreties.
 ## Major Update
 
 * Since 1.0.0 : react-coverflow-X is replace to reactjs-coverflow in the style.
-* Since 2.0.0-beta : translateX proprety can be a string (px, %... are supported), elements of the coverflow doesn't move, it's the entire coverflow whom moves. Increase of perf.
-## Minor Update
+* Since 2.0.0 : translateX proprety can be a string (px, %... are supported),
+	elements of the coverflow doesn't move, it's the entire coverflow whom moves.
+	Increase of perf.
+
+	    	## Minor Update
 
 * Since 1.1.0 : Lodash dependencies has been removed.
-* Since 1.2.0 : New props rotate to define the rotation of a non-active element, New props translateX to define the initial translateX
-## Contributors
+* Since 1.2.0 : New props rotate to define the rotation of a non-active element,
+	New props translateX to define the initial translateX
+
+* Since 2.1.0 : Add a callback function onChange. If the position must change,
+	the call back this.props.onChange will be call. This function will have one
+	parameter, the new position (if you need to have the last position, I propose
+	you to save it in your states)
+
+	    	## Contributors
 
 * [Bastorx](https://github.com/Bastorx)
 
-Use [Github issues](https://github.com/Bastorx/reactjs-coverflow/issues) for requests
+Use [Github issues](https://github.com/Bastorx/reactjs-coverflow/issues) for
+requests
 
-`reactjs-coverflow` is a community project and wouldn't be what it is without contributions! We encourage and support contributions. The `reactjs-coverflow` source code is released under the MIT License.
+`reactjs-coverflow` is a community project and wouldn't be what it is without
+contributions! We encourage and support contributions. The `reactjs-coverflow`
+source code is released under the MIT License.
 
-Feel free to fork and improve/enhance `reactjs-coverflow` any way you want. If you feel that `reactjs-coverflow` will benefit from your changes, please open a pull request.
+Feel free to fork and improve/enhance `reactjs-coverflow` any way you want. If
+you feel that `reactjs-coverflow` will benefit from your changes, please open a
+pull request.
 
 ## Development
 
@@ -185,4 +208,5 @@ $ npm run dev
 $ npm run dev
 ```
 
-PS: In development, gulp is installed and watch the code. It automatically rebuild when you use npm run dev.
+PS: In development, gulp is installed and watch the code. It automatically
+rebuild when you use npm run dev.

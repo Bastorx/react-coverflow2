@@ -15,7 +15,8 @@ module.exports = class Coverflow extends Component {
 		rotate: PropTypes.number,
 		margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		animationSpeed: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-		translateX: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+		translateX: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+		onChange: PropTypes.func
 	};
 	constructor(props) {
 		super(props);
@@ -167,24 +168,24 @@ module.exports = class Coverflow extends Component {
 	previous() {
 		if (this.state.position > 0) {
 			const position = this.state.position - 1;
-			this.setState({ position: position });
+			this.setState({ position });
 			this._animation(position);
 		}
 	}
 	next() {
 		if (this.state.position < this.state.offset.length - 1) {
 			const position = this.state.position + 1;
-			this.setState({ position: position });
+			this.setState({ position });
 			this._animation(position);
 		}
 	}
-	goAt(pos) {
-		if (pos < 0) pos = 0;
-		else if (pos >= this.state.offset.length)
-			pos = this.state.offset.length - 1;
+	goAt(position) {
+		if (position < 0) position = 0;
+		else if (position >= this.state.offset.length)
+			position = this.state.offset.length - 1;
 
-		this.setState({ position: pos });
-		this._animation(pos);
+		this.setState({ position });
+		this._animation(position);
 	}
 	getPosition() {
 		return this.state.position;
@@ -247,6 +248,10 @@ module.exports = class Coverflow extends Component {
 			e.style.transform = rotateY;
 			e.style.zIndex = elementsNumber - Math.abs(position - key);
 		});
+		// Bêta, this call could be update or deprecated later
+		if (this.props.onChange) {
+			this.props.onChange(position);
+		}
 	}
 	_loadCSS() {
 		if (!this.constructor.cssLoaded && typeof document != "undefined") {
