@@ -160,7 +160,7 @@ You can easely overwrite style propreties.
 	elements of the coverflow doesn't move, it's the entire coverflow whom moves.
 	Increase of perf.
 
-	    	## Minor Update
+## Minor Update
 
 * Since 1.1.0 : Lodash dependencies has been removed.
 * Since 1.2.0 : New props rotate to define the rotation of a non-active element,
@@ -171,7 +171,7 @@ You can easely overwrite style propreties.
 	parameter, the new position (if you need to have the last position, I propose
 	you to save it in your states)
 
-	    	## Contributors
+## Contributors
 
 * [Bastorx](https://github.com/Bastorx)
 
