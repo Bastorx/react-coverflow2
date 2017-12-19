@@ -6,6 +6,11 @@
 
 ---
 
+## TRY IT
+
+[![Edit SandBox ReactJS Coverflow](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4231pwz4p9?module=)
+
+
 (Inspired from https://github.com/andyyou/react-coverflow)
 
 React Coverflow is a React component for building cover flow style carousel in a
