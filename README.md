@@ -8,6 +8,7 @@
 
 ## TRY IT
 
+Click bellow to try it on codesandbox!
 [![Edit SandBox ReactJS Coverflow](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4231pwz4p9?module=)
 
 
