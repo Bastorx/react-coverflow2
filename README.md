@@ -220,3 +220,5 @@ $ npm run dev
 
 PS: In development, gulp is installed and watch the code. It automatically
 rebuild when you use npm run dev.
+
+PS-2: Sorry if my english isn't perfect :p You can propose a merge request to correct some faults
