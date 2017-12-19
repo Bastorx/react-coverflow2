@@ -10,6 +10,8 @@
 
 Click bellow to try it on codesandbox!
 
+[See the Example in ZEIT](https://csb-4231pwz4p9-dniizhwghf.now.sh/)
+
 [![Edit SandBox ReactJS Coverflow](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4231pwz4p9?module=)
 
 
