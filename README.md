@@ -14,7 +14,6 @@ Click bellow to try it on codesandbox!
 
 [![Edit SandBox ReactJS Coverflow](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4231pwz4p9?module=)
 
-
 (Inspired from https://github.com/andyyou/react-coverflow)
 
 React Coverflow is a React component for building cover flow style carousel in a
@@ -109,7 +108,7 @@ module.exports = React.createClass({
 	coverflow (default: 0)
 * enableScroll [boolean]: Enable scrolling feature. ((default: true)
 * margin [string or number (px)]: margin between elements in coverflow (default:
-	USE CSS) !! Don't use margin proprety if you prefer to use media queries,
+	USE CSS) !! Don't use margin property if you prefer to use media queries,
 	overwrite the CSS and the class .reactjs-coverflow_Element!!
 * animationSpeed [string or number (second)]: Speed of animation coverflow in
 	second (default: USE CSS) !! Same that margin !!
@@ -121,7 +120,7 @@ module.exports = React.createClass({
 
 #### Refs
 
-You can get some function of your coverflow with a ref proprety
+You can get some function of your coverflow with a ref property
 
 * next(): go to next slide
 * previous(): go to previous slide
@@ -162,12 +161,12 @@ You can use it to create some button
 }
 ```
 
-You can easely overwrite style propreties.
+You can easely overwrite style properties.
 
 ## Major Update
 
 * Since 1.0.0 : react-coverflow-X is replace to reactjs-coverflow in the style.
-* Since 2.0.0 : translateX proprety can be a string (px, %... are supported),
+* Since 2.0.0 : translateX property can be a string (px, %... are supported),
 	elements of the coverflow doesn't move, it's the entire coverflow whom moves.
 	Increase of perf.
 
