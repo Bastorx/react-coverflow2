@@ -1,6 +1,6 @@
 {
   "name": "reactjs-coverflow",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A coverflow module for React",
   "main": "lib/reactjs-coverflow.js",
   "scripts": {

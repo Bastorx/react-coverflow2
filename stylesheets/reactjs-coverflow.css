@@ -20,8 +20,6 @@
 
 .reactjs-coverflow_Element {
 	position: relative;
-	-webkit-box-reflect: below 1px -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)
-				20%, transparent 30%, transparent);
 	margin: auto 20px;
 	transition: transform 0.7s;
 }
